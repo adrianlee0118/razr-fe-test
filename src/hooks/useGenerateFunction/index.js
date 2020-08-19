@@ -7,9 +7,9 @@ import sortingFunction from "../../utils/sortingFunction";
 const fetchDimensions = async (url) => {
   const result = await axios(url);
   return result.data
+    .trim()
     .split(/\r?\n/)
-    .map((num) => parseInt(num))
-    .slice(0, -1);
+    .map((num) => parseInt(num));
 };
 
 //Custom react hook for calling random number API fetch and assembling sorted list of JSON representations of randomly-sized circles and squares
@@ -21,6 +21,7 @@ const useGenerateFunction = (url) => {
     setIsLoading(true);
     const fetch = async () => {
       const numbers = await fetchDimensions(url);
+      console.log(numbers);
       await makeShapes(numbers);
     };
     fetch();

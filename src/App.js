@@ -23,7 +23,7 @@ const App = () => {
     <div
       className="App"
       style={{
-        "text-align": "center",
+        textAlign: "center",
       }}
     >
       <h1>Feast your Eyes</h1>
