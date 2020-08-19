@@ -2,7 +2,13 @@ import { fetchDimensions } from "./index";
 import { Random_100_URL } from "../../constants";
 import axios from "axios";
 
-jest.mock("axios");
+const fakeResponse = "1\n32\n12\n98\n2";
+
+jest.mock("axios", () => {
+  return {
+    get: jest.fn(() => Promise.resolve({ data: fakeResponse })),
+  };
+});
 
 describe("fetchDimensions", () => {
   /*
@@ -20,12 +26,52 @@ describe("fetchDimensions", () => {
   });
   */
 
-  //Mocked API response testing
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
+
+  /*
+  const mockUrl = "/api/numbers";
+  const mockNumbers = {
+    data: "1\n32\n12\n98\n2",
+  };
+  const getNumbers = jest.fn((url) => mockNumbers);
+
+  it("returns numbers from an api call", () => {
+    expect(getNumbers(mockUrl)).toBe(mockNumbers);
+    console.log(getNumbers);
+  });
+
+  it("called getNumbers with a mockUrl", () => {
+    expect(getNumbers).toHaveBeenCalledWith(mockUrl);
+  });
+
   it("returns a list of numbers", async () => {
-    axios.get.mockResolvedValue({
+    const mockResponse = {
       data: "1\n32\n12\n98\n2",
-    });
-    const numbers = await fetchDimensions(Random_100_URL);
-    expect(numbers).toEqual([1, 32, 12, 98, 2]);
+    };
+    axios.get.mockResolvedValue(mockResponse);
+
+    let numbers = await fetchDimensions(Random_100_URL);
+    expect(numbers.length).toEqual(5);
+  });
+  */
+
+  it("should return undefined when axios.get failed", async () => {
+    const getError = new Error("network error");
+    axios.get.mockRejectedValue(getError);
+    const actualValue = await fetchDimensions(Random_100_URL);
+    expect(actualValue).toEqual(undefined);
+    expect(axios.get).toBeCalled(1);
+  });
+
+  it("should return numbers when axios.get successful", async () => {
+    const mockedNumbers = {
+      data: "1\n32\n12\n98\n2",
+    };
+    axios.get.mockResolvedValue(mockedNumbers);
+    const actualValue = await fetchDimensions(Random_100_URL);
+    expect(actualValue).toEqual(mockedNumbers);
+    expect(axios.get).toBeCalled(1);
   });
 });
