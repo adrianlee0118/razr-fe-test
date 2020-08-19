@@ -6,23 +6,28 @@ import sortingFunction from "../../utils/sortFunction";
 //Function handles asynchronous call to the random number API -- isolated for ease of testing
 const fetchDimensions = async (url) => {
   const result = await axios(url);
-  return result.data.split(/\r?\n/).map((num) => parseInt(num));
+  return result.data
+    .split(/\r?\n/)
+    .map((num) => parseInt(num))
+    .slice(0, -1);
 };
 
 //React hook for calling random number API fetch and assembling sorted list of JSON representations of randomly-sized circles and squares
 const useGenerateFunction = (url) => {
   const [shapes, setShapes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetch = async () => {
       const numbers = await fetchDimensions(url);
+      console.log(numbers);
       await makeShapes(numbers);
     };
     fetch();
   }, []);
 
   const makeShapes = (numbers) => {
-    if (numbers.length === 0) return;
     let list = [];
     for (let i = 0; i < numbers.length; i++) {
       list = [
@@ -38,6 +43,7 @@ const useGenerateFunction = (url) => {
     const sortedShapes = sortingFunction(list);
     sortedShapes.map((shape) => console.log(toString(shape)));
     setShapes(sortedShapes);
+    setIsLoading(false);
   };
 
   const getArea = (shapeType, crossDim) => {
@@ -54,7 +60,7 @@ const useGenerateFunction = (url) => {
     );
   };
 
-  return { shapes };
+  return { shapes, isLoading };
 };
 
 export default useGenerateFunction;

@@ -7,7 +7,7 @@ import { Random_100_URL } from "./constants";
 
 //App component -- handles calls to rendering of shapes determined by JSON object list passed from useGenerateFunction React hook, manages dynamic rotation of squares
 const App = () => {
-  const { shapes } = useGenerateFunction(Random_100_URL);
+  const { shapes, isLoading } = useGenerateFunction(Random_100_URL);
   const [angle, setAngle] = useState(0);
 
   //Rotate squares clockwise by 10 degrees every 500 ms ([angle] indicates a re-render is to be triggered whenever angle changes)
@@ -28,7 +28,9 @@ const App = () => {
     >
       <h1>Feast your Eyes</h1>
       <div>
-        {shapes.length === 0 ? (
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : shapes.length === 0 ? (
           <p>No data: something went wrong.</p>
         ) : (
           shapes.map((shape) =>
