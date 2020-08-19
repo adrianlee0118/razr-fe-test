@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Square has a valid snapshot 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "red",
+      "display": "inline-block",
+      "height": undefined,
+      "margin": 20,
+      "padding": 10,
+      "transform": "rotate(undefineddeg)",
+      "width": undefined,
+    }
+  }
+/>
+`;

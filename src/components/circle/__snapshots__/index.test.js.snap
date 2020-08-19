@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Circle has a valid snapshot 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "blue",
+      "borderRadius": "50%",
+      "display": "inline-block",
+      "height": NaN,
+      "margin": 20,
+      "padding": 10,
+      "width": NaN,
+    }
+  }
+/>
+`;

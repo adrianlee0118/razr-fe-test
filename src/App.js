@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import Circle from "./components/circle";
+import Square from "./components/square";
+import axios from "axios";
 
-function App() {
+import "./App.css";
+import useGenerateFunction from "./hooks/useGenerateFunction";
+import { Random_100_URL } from "./constants";
+
+//App component -- handles calls to rendering of shapes determined by JSON object list passed from useGenerateFunction React hook, manages dynamic rotation of squares
+const App = () => {
+  const { shapes, error } = useGenerateFunction(Random_100_URL);
+  const [angle, setAngle] = useState(0);
+
+  //Rotate squares clockwise by 10 degrees every 500 ms ([angle] indicates a re-render is to be triggered whenever angle changes)
+  useEffect(() => {
+    const interval = setInterval(
+      () => setAngle(angle === 80 ? 0 : angle + 10),
+      500
+    );
+    return () => clearInterval(interval);
+  }, [angle]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Feast your Eyes</h1>
+      <div>
+        {error ? (
+          <p>Something went wrong.</p>
+        ) : (
+          shapes.map((shape) =>
+            shape.type === "circle" ? (
+              <Circle key={shape.key} radius={shape.crossdim / 2} />
+            ) : (
+              <Square key={shape.key} sidelen={shape.crossdim} angle={angle} />
+            )
+          )
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
