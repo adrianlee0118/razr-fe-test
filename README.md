@@ -1,6 +1,6 @@
 ## About
 
-A client-side app that does this:
+A lightweight client-side app that does this:
 
 ![lookit](https://github.com/adrianlee0118/razr-fe-test/blob/master/assets/captured.gif)
 
@@ -17,5 +17,5 @@ Created with ReactJS and Sass using Create-React-App, and tested in Jest/Enzyme.
 
 ## Acknowledgements
 
-[Random.org's](https://www.random.org/clients/http/#integers) random integer generator API used to create random shape dimensions.
+[Random.org's](https://www.random.org/clients/http/#integers) lightweight random integer generator API used to create random shape dimensions.
 
