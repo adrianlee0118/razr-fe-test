@@ -15,6 +15,8 @@ Created with ReactJS and Sass using Create-React-App, and tested in Jest/Enzyme.
 3. Run ```npm start``` in the root directory again
 4. Head to localhost:3000
 
+* To run tests, run ```npm test```
+
 ## Acknowledgements
 
 [Random.org's](https://www.random.org/clients/http/#integers) lightweight random integer generator API used to create random shape dimensions.
