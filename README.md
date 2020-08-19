@@ -11,6 +11,11 @@ Created with ReactJS and Sass using Create-React-App, and tested in Jest/Enzyme.
 ## Install
 
 1. Clone the repository
-2. Run ```npm install```
-3. Run ```npm start```
+2. Run ```npm install``` in the project root directory
+3. Run ```npm start``` in the root directory again
+4. Head to localhost:3000
+
+## Acknowledgements
+
+[Random.org's](https://www.random.org/clients/http/#integers) random integer generator API used to create random shape dimensions.
 
