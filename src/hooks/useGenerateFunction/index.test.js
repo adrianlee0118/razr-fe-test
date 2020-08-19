@@ -78,20 +78,14 @@ describe("fetchDimensions", () => {
       data: "1\n32\n12\n98\n2",
     });
   });
-});
 
-describe("TvShows.http", () => {
-  describe("getSearchShows", () => {
-    it("retrieves shows over http and correctly deserializes them", async () => {
-      const mockAxiosGet = jest.spyOn(axios, "get");
+  it("fetches successfully data from an API", async () => {
+    const data = { data: "23\n45\n12\n96" };
 
-      mockAxiosGet.mockImplementation(async () => fakeSearchShowsResponse);
+    axios.get.mockImplementationOnce(() => Promise.resolve(data));
 
-      const shows = await getSearchShows("test");
+    await expect(fetchDimensions(Random_100_URL)).resolves.toEqual(data);
 
-      console.log(mockAxiosGet.mock.calls);
-
-      expect(shows[0].id).toEqual(139);
-    });
+    expect(axios.get).toHaveBeenCalledWith(Random_100_URL);
   });
 });
