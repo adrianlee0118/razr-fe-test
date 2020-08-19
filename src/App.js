@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Circle from "./components/circle";
 import Square from "./components/square";
-import axios from "axios";
 
 import "./App.css";
 import useGenerateFunction from "./hooks/useGenerateFunction";
