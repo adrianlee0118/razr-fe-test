@@ -12,7 +12,7 @@ const fetchDimensions = async (url) => {
     .slice(0, -1);
 };
 
-//React hook for calling random number API fetch and assembling sorted list of JSON representations of randomly-sized circles and squares
+//Custom react hook for calling random number API fetch and assembling sorted list of JSON representations of randomly-sized circles and squares
 const useGenerateFunction = (url) => {
   const [shapes, setShapes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +21,6 @@ const useGenerateFunction = (url) => {
     setIsLoading(true);
     const fetch = async () => {
       const numbers = await fetchDimensions(url);
-      console.log(numbers);
       await makeShapes(numbers);
     };
     fetch();
