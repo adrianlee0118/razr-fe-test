@@ -2,11 +2,9 @@ import { fetchDimensions } from "./index";
 import { Random_100_URL } from "../../constants";
 import axios from "axios";
 
-const fakeResponse = "1\n32\n12\n98\n2";
-
 jest.mock("axios", () => {
   return {
-    get: jest.fn(() => Promise.resolve({ data: fakeResponse })),
+    get: jest.fn(() => Promise.resolve({ data: "1\n32\n12\n98\n2" })),
   };
 });
 
@@ -69,7 +67,6 @@ describe("fetchDimensions", () => {
     const mockedNumbers = {
       data: "1\n32\n12\n98\n2",
     };
-    axios.get.mockResolvedValue(mockedNumbers);
     const actualValue = await fetchDimensions(Random_100_URL);
     expect(actualValue).toEqual(mockedNumbers);
     expect(axios.get).toBeCalled(1);
