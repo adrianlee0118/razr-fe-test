@@ -6,6 +6,8 @@ jest.mock("axios");
 
 describe("fetchDimensions", () => {
   /*
+  Some preliminary isolated testing calling the actual network
+
   it("fetches 100 random numbers from API", async () => {
     const numbers = await fetchDimensions(Random_100_URL);
     expect(numbers.length).toEqual(100);
@@ -17,6 +19,8 @@ describe("fetchDimensions", () => {
     expect(Math.max(...numbers)).toBeLessThanOrEqual(100);
   });
   */
+
+  //Mocked API response testing
   it("returns a list of numbers", async () => {
     axios.get.mockResolvedValue({
       data: "1\n32\n12\n98\n2",
