@@ -40,7 +40,7 @@ const useGenerateFunction = (url) => {
       ];
     }
     const sortedShapes = sortingFunction(list);
-    sortedShapes.map((shape) => console.log(toString(shape)));
+    sortedShapes.map((shape) => console.log(toString(shape))); //called toString here to get an overview of shapes generated and because otherwise toString is never called
     setShapes(sortedShapes);
     setIsLoading(false);
   };
