@@ -2,11 +2,7 @@ import { fetchDimensions } from "./index";
 import { Random_100_URL } from "../../constants";
 import axios from "axios";
 
-jest.mock("axios", () => {
-  return {
-    get: jest.fn(() => Promise.resolve({ data: "1\n32\n12\n98\n2" })),
-  };
-});
+jest.mock("axios");
 
 describe("fetchDimensions", () => {
   /*
@@ -70,5 +66,32 @@ describe("fetchDimensions", () => {
     const actualValue = await fetchDimensions(Random_100_URL);
     expect(actualValue).toEqual(mockedNumbers);
     expect(axios.get).toBeCalled(1);
+  });
+
+  it("returns data", async () => {
+    axios.get.mockResolvedValue({
+      data: "1\n32\n12\n98\n2",
+    });
+
+    const result = await fetchDimensions(Random_100_URL);
+    expect(result).toEqual({
+      data: "1\n32\n12\n98\n2",
+    });
+  });
+});
+
+describe("TvShows.http", () => {
+  describe("getSearchShows", () => {
+    it("retrieves shows over http and correctly deserializes them", async () => {
+      const mockAxiosGet = jest.spyOn(axios, "get");
+
+      mockAxiosGet.mockImplementation(async () => fakeSearchShowsResponse);
+
+      const shows = await getSearchShows("test");
+
+      console.log(mockAxiosGet.mock.calls);
+
+      expect(shows[0].id).toEqual(139);
+    });
   });
 });
