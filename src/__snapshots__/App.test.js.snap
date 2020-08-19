@@ -3,10 +3,19 @@
 exports[`App has a valid snapshot 1`] = `
 <div
   className="App"
+  style={
+    Object {
+      "text-align": "center",
+    }
+  }
 >
   <h1>
     Feast your Eyes
   </h1>
-  <div />
+  <div>
+    <p>
+      No data: something went wrong.
+    </p>
+  </div>
 </div>
 `;

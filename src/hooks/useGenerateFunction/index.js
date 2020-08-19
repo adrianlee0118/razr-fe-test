@@ -3,24 +3,23 @@ import axios from "axios";
 
 import sortingFunction from "../../utils/sortFunction";
 
-//React hook for calling random number API and assembling sorted list of JSON representations of randomly-sized circles and squares
+//Function handles asynchronous call to the random number API -- isolated for ease of testing
+const fetchDimensions = async (url) => {
+  const result = await axios(url);
+  return result.data.split(/\r?\n/).map((num) => parseInt(num));
+};
+
+//React hook for calling random number API fetch and assembling sorted list of JSON representations of randomly-sized circles and squares
 const useGenerateFunction = (url) => {
   const [shapes, setShapes] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchDimensions();
+    const fetch = async () => {
+      const numbers = await fetchDimensions(url);
+      await makeShapes(numbers);
+    };
+    fetch();
   }, []);
-
-  const fetchDimensions = async () => {
-    try {
-      const result = await axios(url);
-      const numbers = result.data.split(/\r?\n/).map((num) => parseInt(num));
-      makeShapes(numbers);
-    } catch (error) {
-      setError(error);
-    }
-  };
 
   const makeShapes = (numbers) => {
     if (numbers.length === 0) return;
@@ -55,7 +54,9 @@ const useGenerateFunction = (url) => {
     );
   };
 
-  return { shapes, error };
+  return { shapes };
 };
 
 export default useGenerateFunction;
+
+export { fetchDimensions };
