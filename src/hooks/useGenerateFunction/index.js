@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import sortingFunction from "../../utils/sortFunction";
+import sortingFunction from "../../utils/sortingFunction";
 
 //Function handles asynchronous call to the random number API -- isolated for ease of testing
 const fetchDimensions = async (url) => {
