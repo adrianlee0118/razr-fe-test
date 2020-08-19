@@ -5,7 +5,7 @@ exports[`App has a valid snapshot 1`] = `
   className="App"
   style={
     Object {
-      "text-align": "center",
+      "textAlign": "center",
     }
   }
 >
