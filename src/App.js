@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Circle from "./components/circle";
 import Square from "./components/square";
 
-import "./App.css";
 import useGenerateFunction from "./hooks/useGenerateFunction";
 import { Random_100_URL } from "./constants";
 
@@ -21,7 +20,12 @@ const App = () => {
   }, [angle]);
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{
+        "text-align": "center",
+      }}
+    >
       <h1>Feast your Eyes</h1>
       <div>
         {error ? (
