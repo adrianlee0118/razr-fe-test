@@ -1,6 +1,6 @@
 ## About
 
-A lightweight client-side app that does this:
+A light weight client-side app that does this:
 
 ![lookit](https://github.com/adrianlee0118/razr-fe-test/blob/master/assets/captured.gif)
 
