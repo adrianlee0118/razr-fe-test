@@ -13,8 +13,8 @@ const App = () => {
   //Rotate squares clockwise by 10 degrees every 500 ms ([angle] indicates a re-render is to be triggered whenever angle changes)
   useEffect(() => {
     const interval = setInterval(
-      () => setAngle(angle === 80 ? 0 : angle + 10),
-      500
+      () => setAngle(angle === 89 ? 0 : angle + 1),
+      50
     );
     return () => clearInterval(interval);
   }, [angle]);
